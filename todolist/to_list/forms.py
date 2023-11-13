@@ -8,8 +8,8 @@ class CriarTarefaForm(forms.ModelForm):
         fields = ['title', 'description']
 
         labels = {
-            'title': 'Titulo da Tarefa'
-            'description': 'Descrição da Tarefa'
+            'title': 'Titulo da Tarefa',
+            'description': 'Descrição da Tarefa',
         }
 
         widgets = {
