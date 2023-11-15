@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from to_list.models import ToDoItem
 from to_list.forms import CriarTarefaForm
 from django.urls import reverse_lazy
 
 # Create your views here.
 
-class VerListaView():
+class VerListaView(ListView):
     model = ToDoItem
     template_name = 'listar_tarefas.html'
     
@@ -21,3 +21,31 @@ class CriarTarefaView(CreateView):
     form_class = CriarTarefaForm
     template_name = 'criar_tarefa.html'
     sucess_url = reverse_lazy('ver_lista')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tarefa'] = ToDoItem.objects.all() 
+        return context
+    
+    
+class EliminarTarefaView(DeleteView):
+    model = ToDoItem
+    template_name = 'eliminar_tarefa.html'
+    sucess_url = reverse_lazy("Ver_lista")
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["tarefa"] = self.object
+        return context
+
+class EditarTarefaView(UpdateView):
+    model = ToDoItem
+    template = "criar_tarefa.html"
+    form_class = CriarTarefaForm
+    sucess_url = reverse_lazy('ver_lista')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["tarefa"] = self.object
+        return context
+    

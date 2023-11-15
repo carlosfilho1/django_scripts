@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block  %}
+{% block content %}
 <table>
     <thead>
         <tr>
@@ -12,7 +12,14 @@
     </thead>
 
     <tbody>
-        {% for list%}
+        {% for listTarefa in lista_tarefa %}
+        <tr>
+            <th>{{listTarefa.title}}</th>
+            <th>{{listTarefa.description}}</th>
+            <th>{{}}</th>
+            <th></th>
+            <th></th>
+        </tr>
     </tbody>
 </table>
 
