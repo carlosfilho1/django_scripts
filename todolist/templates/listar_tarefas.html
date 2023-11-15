@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+
 <table>
     <thead>
         <tr>
@@ -16,10 +17,11 @@
         <tr>
             <th>{{listTarefa.title}}</th>
             <th>{{listTarefa.description}}</th>
-            <th>{{}}</th>
-            <th></th>
-            <th></th>
+            <th>{{listTarefa.create_date}}</th>
+            <th><a href="{% url eliminar_tarefa %}">Elminar</a></th>
+            <th><a href="{% url editar_tarefa %}">Editar</a></th>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 
