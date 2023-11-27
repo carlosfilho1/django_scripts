@@ -1,29 +1,30 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block content %}
-
-<table>
+  <table>
     <thead>
-        <tr>
-            <th>Título</th>
-            <th>Description</th>
-            <th>fecha criação</th>
-            <th>Eliminar</th>
-            <th>Editar</th>
-        </tr>
+      <tr>
+        <th>Título</th>
+        <th>Description</th>
+        <th>Data criação</th>
+        <th>Eliminar</th>
+        <th>Editar</th>
+      </tr>
     </thead>
 
     <tbody>
-        {% for listTarefa in lista_tarefa %}
+      {% for item in items %}
         <tr>
-            <th>{{listTarefa.title}}</th>
-            <th>{{listTarefa.description}}</th>
-            <th>{{listTarefa.create_date}}</th>
-            <th><a href="{% url eliminar_tarefa %}">Elminar</a></th>
-            <th><a href="{% url editar_tarefa %}">Editar</a></th>
+          <th>{{ item.title }}</th>
+          <th>{{ item.description }}</th>
+          <th>{{ item.create_date }}</th>
+          <th>
+            <a href="{% url 'delete_task' item.id %}">Elminar</a>
+          </th>
+          <th>
+            <a href="{% url 'editar_tarefa' item.id %}">Editar</a>
+          </th>
         </tr>
-        {% endfor %}
+      {% endfor %}
     </tbody>
-</table>
-
-
-{% endblock  %}
+  </table>
+{% endblock %}

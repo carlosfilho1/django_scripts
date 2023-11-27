@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Editar Tarefa</h3>
+<div>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <div>
+                <button type="submit" class="btn btn-sucess"><i class="fas fa-user"></i>Registrar</button>
+                <a href="{% url 'ver_lista' %}" class="btn btn-danger"><i class="fas fa-windows-close"></i>Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
+

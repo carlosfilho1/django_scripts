@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
   <h3>Eliminar Tarefa</h3>
-  <form method="post">
+  <form method="post" action="{% url 'delete_task' pk=tarefa.id %}">
     {% csrf_token %}
     <h3>Desejar eliminar tarefa "{{ tarefa.title }}"</h3>
-    <input value="Submit" type="submit" onclick="location.href='{% url "eliminar_tarefa" tarefa.id %}'">
-    <input value="Cancel" type="button" onclick="location.href='{% url "ver_lista" %}'">
+    <input value="Submit" type="submit" >
+    <input value="Cancel" type="button" onclick="location.href='{% url 'ver_lista' %}'">
 
   </form>
 {% endblock %}
+  

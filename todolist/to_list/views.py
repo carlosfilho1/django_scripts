@@ -9,10 +9,11 @@ from django.urls import reverse_lazy
 class VerListaView(ListView):
     model = ToDoItem
     template_name = 'listar_tarefas.html'
+    context_object_name = 'ver_lista'
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['listar_tarefa'] = ToDoItem.objects.all() 
+        context['items'] = ToDoItem.objects.all() 
         return context
     
 
@@ -20,7 +21,7 @@ class CriarTarefaView(CreateView):
     model = ToDoItem
     form_class = CriarTarefaForm
     template_name = 'criar_tarefa.html'
-    sucess_url = reverse_lazy('ver_lista')
+    success_url = reverse_lazy('ver_lista')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -30,22 +31,23 @@ class CriarTarefaView(CreateView):
     
 class EliminarTarefaView(DeleteView):
     model = ToDoItem
-    template_name = 'eliminar_tarefa.html'
-    sucess_url = reverse_lazy("Ver_lista")
+    template_name = 'delete_task.html'
+    success_url = reverse_lazy('Ver_lista')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["tarefa"] = self.object
+        context['tarefa'] = self.object
         return context
+
 
 class EditarTarefaView(UpdateView):
     model = ToDoItem
-    template = "criar_tarefa.html"
+    template_name = 'editar_tarefa.html'
     form_class = CriarTarefaForm
-    sucess_url = reverse_lazy('ver_lista')
+    success_url = reverse_lazy('ver_lista')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["tarefa"] = self.object
+        context['items'] = self.object
         return context
     

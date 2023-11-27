@@ -14,5 +14,5 @@ class CriarTarefaForm(forms.ModelForm):
 
         widgets = {
             'title:': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Titulo da Tarefa'}),
-            'description': forms.TextInput(attrs={'class':'form-control','placeholder':'Titulo da Tarefa'}),
+            'description': forms.TextInput(attrs={'class':'form-control','placeholder':'Descrição da Tarefa'}),
         }
